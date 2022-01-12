@@ -1,0 +1,38 @@
+.nav-blur{
+    background-color: #212529d7;
+    -webkit-backdrop-filter: saturate(110%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: transparent !important;
+    padding-left: 6px;
+    padding-right: 0px;
+
+}
+
+.navbar-toggler:focus {
+    outline: transparent !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.text-nav{
+    font-family: 'Abril Fatface', cursive;
+}
+
+.text-title{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700 !important;
+    white-space: pre-line;      /* current browsers */
+    word-break: keep-all  !important;
+}
+
+.text-button{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 700 !important;
+}
+
+.text-lic{
+    white-space: pre-line;      /* current browsers */
+    word-break: keep-all  !important;
+}
