@@ -36,3 +36,7 @@
     white-space: pre-line;      /* current browsers */
     word-break: keep-all  !important;
 }
+
+.alert-light:hover{
+    background-color: #ced0d8d7;
+}
