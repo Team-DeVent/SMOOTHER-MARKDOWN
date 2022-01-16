@@ -1,7 +1,21 @@
 .nav-blur{
-    background-color: #212529d7;
-    -webkit-backdrop-filter: saturate(110%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
+    transition: backdrop-filter 0.3s;
+    transition: background-color 0.3s;
+
+    -webkit-backdrop-filter: saturate(100%) blur(0px);
+    backdrop-filter: saturate(100%) blur(0px);
+    
+}
+
+.nav-blur.active {
+    background-color: #0f12229a;
+
+    -webkit-backdrop-filter: saturate(100%) blur(20px);
+    backdrop-filter: saturate(100%) blur(20px);
+}
+
+.head-gradient {
+    background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(42,54,110,1) 100%);
 }
 
 .navbar-dark .navbar-toggler {

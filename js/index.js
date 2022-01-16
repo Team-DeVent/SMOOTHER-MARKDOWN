@@ -1,3 +1,12 @@
+document.addEventListener('scroll', function() {
+    if (document.documentElement.scrollTop > 50) {
+        document.querySelector("#nav_body").classList.add('active')
+    } else {
+        document.querySelector("#nav_body").classList.remove('active')
+
+    }
+});
+
 async function getArticle(url) {
     let response = fetch(url);
     return response.then(res => res.text());

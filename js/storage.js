@@ -50,5 +50,17 @@ function patchRoom(lists) {
 
 function locationMarkdown(name) {
     location.href = window.location.href+'#'+name;
-    location.reload()
+    location.reload();
+}
+
+function downloadData(itemKey) {
+    let dataStorage = localStorage.getItem('data_'+itemKey);
+    let dataBlob = new Blob([dataStorage], {type: 'text/plain'});
+    let downloadUrl = URL.createObjectURL(dataBlob);
+    let a = document.createElement("a");
+    a.href = downloadUrl;
+    a.download = `${itemKey}.md`;
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(downloadUrl);
 }

@@ -18,24 +18,40 @@
   </head>
   <body >
     <div id="__nav"></div>
+    <header class="bg-dark py-5">
+        <div class="container px-5 pt-4">
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-6">
+                    <div class="text-center my-5">
+                        <h1 class="display-5 fw-bolder text-white text-title mb-2" id="page_title">마크다운 파일 리스트</h1>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
     <div id="__body">
+        
         <section class="m-2 mr-2">
             <div class="container-fluid  mt-3">
                 <div class="row mt-5 pt-5 mb-5">
     
-                    <div class="col-12">
+                    <div class="col-12 mb-5">
                         <div class="row">
     
                             <div class="col-6" id="markdown_text" style="height: 100%;">
     
                             </div>
     
-                            <div class="col-6 card" id="markdown_preview">
+                            <div class="col-6 card overflow-scroll" id="markdown_preview">
     
                             </div>
     
                         </div>
                     </div>
+
+                    <button class="btn btn-light " onclick="downloadData(`${dataKey}`)"><i class="fas fa-download"></i> 다운로드</button>
+
                 </div>
             </div>
         </section>
@@ -72,12 +88,14 @@
             if (data == null) {
                 saveData(dataKey, '')
                 data = loadData(dataKey);
+                
             }
 
             myCodeMirror = CodeMirror(document.querySelector("#markdown_text"), {
                 value: data,
                 mode: "markdown"
             });
+            document.querySelector("#page_title").innerText = dataKey
 
             updateMarkdownPreview()
 
