@@ -54,3 +54,7 @@
 .alert-light:hover{
     background-color: #ced0d8d7;
 }
+
+.hide {
+    display: none !important;
+}
