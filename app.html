@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Noto+Sans+KR:wght@500;700;900&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.css" integrity="sha512-CCnciBUnVXwa6IQT9q8EmGcarNit9GdKI5nJnj56B1iu0LuD13Qn/GZ+IUkrZROZaBdutN718NK6mIXdUjZGqg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.6/sweetalert2.min.css" integrity="sha512-jtQXcnq6H9BVx+dOsdudNCZmNe2hBMqcPpnVgeZcV9L3615F4+QMQebbWW9TV2otOSk/kQgum0MpWefB3uL3pg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet"  href="/css/main.css">
     <link rel="stylesheet"  href="/css/markdown.css">
 
@@ -77,6 +77,8 @@
         <div class="offcanvas-body">
             <button class="btn btn-dark " onclick="downloadData(`${dataKey}`)"><i class="fas fa-download"></i> 현재 문서 다운로드</button>
 
+<br>
+            <button class="btn btn-danger " onclick="removeRoom(`${dataKey}`)"><i class="fas fa-download"></i> 문서 삭제</button>
         </div>
     </div>
 
@@ -86,19 +88,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/codemirror.min.js" integrity="sha512-JpMCZgesTWh1iu/8ujURbwkJBgbgFWe3sTNCHdIuEvPwZuuN0nTUr2yawXahpgdEK7FOZUlW254Rp7AyDYJdjg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.0/mode/markdown/markdown.min.js" integrity="sha512-M1xCxP7Cdf+uWhKzPWcI1rMEXDiEyxTyVqRfzGVGoim93W+IWPaJL3gni6aGuE9HJcIMUFqLtLY5ypeNtguQPg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.3.6/sweetalert2.min.js" integrity="sha512-DyFdigPSyUbsT1ioYelAc+l6T6s2QB9OZv48jBpr589vTJWRmclLAl1sOZ560bOhwwi9Aewr/VrcPLiTXM5W/Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://codemirror.net/addon/edit/continuelist.js"></script>
 
     <script src="/js/index.js"></script>
     <script src="/js/markdown.js"></script>
     <script src="/js/storage.js"></script>
+    <script src="/js/modal.js"></script>
 
     <script>
         loadNavbar()
         loadModals()
 
 
-        let myCodeMirror, dataKey = window.location.href.split("#")[1], data
+
+        let myCodeMirror, dataKey = window.location.href.split("#")[1], data, modal
+        setTimeout(() => {
+            modal = new Modals('modal_createmarkdown');
+        }, 700);
 
         if (dataKey == undefined) {
             loadBrowser()
@@ -130,7 +137,7 @@
         }
 
 
-
+            
 
 
         myCodeMirror.on('change', (editor) => {

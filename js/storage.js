@@ -15,16 +15,48 @@ function onclickCreateRoom() {
 
 function createRoom(data) {
     let lists = [];
+    let is_vaild = 1;
     let room_list = JSON.parse(localStorage.getItem('room_list'));
-    if (room_list == null) {
-        lists.push(data)
-        localStorage.setItem('room_list', JSON.stringify(lists));
+    let room_duplicate = room_list.map( function( item ) { return item['name']; }).indexOf(data)
+
+    if (room_duplicate == -1) {
+        is_vaild = 0
+    } 
+
+    if (is_vaild) {
+        if (room_list == null) {
+            lists.push(data)
+            localStorage.setItem('room_list', JSON.stringify(lists));
+        } else {
+            lists = room_list
+            lists.push(data)
+            localStorage.setItem('room_list', JSON.stringify(lists));
+        }
+        loadRoom() 
+        modal.hide()
+        Swal.fire(
+            '생성 완료',
+            '문서가 성공적으로 생성되었습니다',
+            'success'
+        )
     } else {
-        lists = room_list
-        lists.push(data)
-        localStorage.setItem('room_list', JSON.stringify(lists));
+        Swal.fire(
+            '생성 실패',
+            '이름 중복을 확인해주세요',
+            'error'
+        )
     }
-    loadRoom() 
+
+}
+
+function removeRoom(roomKey) {
+    let lists = [];
+    let room_list = JSON.parse(localStorage.getItem('room_list'));
+    if (room_list !== null) {
+        lists = room_list
+        filtered = lists.filter((element) => element.name !== roomKey);
+        localStorage.setItem('room_list', JSON.stringify(filtered));
+    }
 }
 
 function loadRoom() {
