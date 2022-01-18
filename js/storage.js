@@ -17,9 +17,9 @@ function createRoom(data) {
     let lists = [];
     let is_vaild = 1;
     let room_list = JSON.parse(localStorage.getItem('room_list'));
-    let room_duplicate = room_list.map( function( item ) { return item['name']; }).indexOf(data)
+    let room_duplicate = room_list.map( function( item ) { return item['name']; }).indexOf(data.name)
 
-    if (room_duplicate == -1) {
+    if (room_duplicate != -1) {
         is_vaild = 0
     } 
 
@@ -56,6 +56,16 @@ function removeRoom(roomKey) {
         lists = room_list
         filtered = lists.filter((element) => element.name !== roomKey);
         localStorage.setItem('room_list', JSON.stringify(filtered));
+
+        Swal.fire(
+            '삭제 완료',
+            '문서가 성공적으로 삭제되었습니다',
+            'success'
+        )
+
+        setTimeout(() => {
+            location.href = '/app.html'
+        }, 500);
     }
 }
 
